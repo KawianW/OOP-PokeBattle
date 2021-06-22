@@ -3,17 +3,17 @@
     class Pokemon
      {
         public $Name;
-        public $Energytype;
+        public $EnergyType;
         public $Hitpoints;
         public $Health;
         public $Attacks;
         public $Weakness;
         public $Resistance;
 
-        public function __construct($Name, $Energytype, $Hitpoints, $Health, $Attacks, $Weakness, $Resistance)
+        public function __construct($Name, $EnergyType, $Hitpoints, $Health, $Attacks, $Weakness, $Resistance)
         {
             $this->name = $Name;
-            $this->energytype = $Energytype;
+            $this->energytype = $EnergyType;
             $this->hitpoints = $Hitpoints;
             $this->health = $Health;
             $this->attacks = $Attacks;
