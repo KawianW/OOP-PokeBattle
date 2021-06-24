@@ -2,12 +2,13 @@
 
 class Attacks
 {
-    public $Name;
-    public $Hitpoints;
+    public $name;
+    public $hitpoints;
 
-    public function __construct($Name, $Hitpoints)
+    public function __construct($name, $hitpoints)
     {
-        $this->name = $Name;
-        $this->hitpoints = $Hitpoints;
+        $this->name = $name;
+        $this->hitpoints = $hitpoints;
     }
 }
+

@@ -4,23 +4,28 @@
      {
         // public is een acces modefier
         // name is een opjekt
-        public $Name;
-        public $EnergyType;
-        public $Hitpoints;
-        public $Health;
-        public $Attacks;
-        public $Weakness;
-        public $Resistance;
+        public $name;
+        public $energyType;
+        public $hitpoints;
+        public $health;
+        public $attacks;
+        public $weakness;
+        public $resistance;
 
-        public function __construct($Name, $EnergyType, $Hitpoints, $Health, $Attacks, $Weakness, $Resistance)
+        public function __construct($name, $energyType, $hitpoints, $attacks, $weakness, $resistance)
         {
-            $this->name = $Name;
-            $this->energytype = $EnergyType;
-            $this->hitpoints = $Hitpoints;
-            $this->health = $Health;
-            $this->attacks = $Attacks;
-            $this->weakness = $Weakness;
-            $this->resistance = $Resistance;
+            $this->name = $name;
+            $this->energytype = $energyType;
+            $this->hitpoints = $hitpoints;
+            $this->health = $hitpoints;
+            $this->attacks = $attacks;
+            $this->weakness = $weakness;
+            $this->resistance = $resistance;
+        }
+
+        public function __toString()
+        {
+            return json_encode($this);
         }
     }
 

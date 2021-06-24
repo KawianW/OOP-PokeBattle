@@ -2,12 +2,12 @@
 
 class Weakness
 {
-    public $EnergyType;
-    public $Multiplier;
+    public $energyType;
+    public $multiplier;
 
-    public function __construct($EnergyType, $Multiplier)
+    public function __construct($energyType, $multiplier)
     {
-        $this->energyType = $EnergyType;
-        $this->multiplier = $Multiplier;
+        $this->energyType = $energyType;
+        $this->multiplier = $multiplier;
     }
 }

@@ -2,10 +2,10 @@
 
 class EnergyType
 {
-    public $Name;
+    public $name;
 
-    public function __construct($Name)
+    public function __construct($name)
     {
-        $this->name = $Name;
+        $this->name = $name;
     }
 }
