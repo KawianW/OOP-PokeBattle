@@ -2,6 +2,8 @@
 
     class Pokemon
      {
+        // public is een acces modefier
+        // name is een opjekt
         public $Name;
         public $EnergyType;
         public $Hitpoints;
