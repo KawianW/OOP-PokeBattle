@@ -30,9 +30,9 @@
 
     public function battle($pokemon, $attack){
 
-        echo $pokemon->name . ' heeft op dit moment ' . $pokemon->health . 'HP van de ' . $pokemon->hitpoints . 'HP <br>';
+        // echo $pokemon->name . ' heeft op dit moment ' . $pokemon->health . 'HP van de ' . $pokemon->hitpoints . 'HP <br>';
 
-        echo $this->name . ' valt ' . $pokemon->name . ' aan met ' . $attack->name . '! <br>';
+        // echo $this->name . ' valt ' . $pokemon->name . ' aan met ' . $attack->name . '! <br>';
 
         $attackingPokemon = $this->energyType->name;
         $pokemonWeakness = $pokemon->weakness->energyType;
@@ -48,8 +48,29 @@
 
         $pokemon->health = $pokemon->health - $attack->hitpoints;
 
-        echo $pokemon->name . ' heeft ' . $pokemon->health . 'HP van de ' . $pokemon->hitpoints . 'HP over <br> <br>';
+        // echo $pokemon->name . ' heeft ' . $pokemon->health . 'HP van de ' . $pokemon->hitpoints . 'HP over <br> <br>';
+        return $pokemon->health;
     }
+
+    public function getName() {
+        return $this->name;
+    }
+
+    public function getHitpoints() {
+        return $this->hitpoints;
+    }
+    public function getHealth() {
+        return $this->health;
+    }
+
+    public function getAttack($attackNumber) {
+        return $this->attacks[$attackNumber]->name;
+    }
+
+    function newhealth() {
+        
+    }
+
 
         
     }
