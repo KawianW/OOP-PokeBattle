@@ -1,78 +1,100 @@
-<?php
-
-    class Pokemon
-     {
-        // public is een acces modefier
-        // name is een opjekt
-        public $name;
-        public $energyType;
-        public $hitpoints;
-        public $health;
-        public $attacks;
-        public $weakness;
-        public $resistance;
-
-        public function __construct($name, $energyType, $hitpoints, $attacks, $weakness, $resistance)
-        {
-            $this->name = $name;
-            $this->energytype = $energyType;
-            $this->hitpoints = $hitpoints;
-            $this->health = $hitpoints;
-            $this->attacks = $attacks;
-            $this->weakness = $weakness;
-            $this->resistance = $resistance;
-        }
-
-        public function __toString()
-    {
-        return json_encode($this);
-    }
-
-    public function battle($pokemon, $attack){
-
-        // echo $pokemon->name . ' heeft op dit moment ' . $pokemon->health . 'HP van de ' . $pokemon->hitpoints . 'HP <br>';
-
-        // echo $this->name . ' valt ' . $pokemon->name . ' aan met ' . $attack->name . '! <br>';
-
-        $attackingPokemon = $this->energyType->name;
-        $pokemonWeakness = $pokemon->weakness->energyType;
-        $pokemonResistance = $pokemon->resistance->energyType;
-
-        if($attackingPokemon == $pokemonWeakness){
-            $attack->hitpoints - $attack->hitpoints * $pokemon->weakness->multiplier;
-        }
-
-        if($attackingPokemon == $pokemonResistance){
-            $attack->hitpoints - $attack->hitpoints * $pokemon->resistance->value;
-        }
-
-        $pokemon->health = $pokemon->health - $attack->hitpoints;
-
-        // echo $pokemon->name . ' heeft ' . $pokemon->health . 'HP van de ' . $pokemon->hitpoints . 'HP over <br> <br>';
-        return $pokemon->health;
-    }
-
-    public function getName() {
-        return $this->name;
-    }
-
-    public function getHitpoints() {
-        return $this->hitpoints;
-    }
-    public function getHealth() {
-        return $this->health;
-    }
-
-    public function getAttack($attackNumber) {
-        return $this->attacks[$attackNumber]->name;
-    }
-
-    function newhealth() {
-        
-    }
-
-
-        
-    }
-
-?>
+<?php 
+	// namespace Pokemon;
+	class Pokemon {
+		public static $populationPokemons;
+		private $name;
+		private $energyType;
+		private $hitPoints;
+		private $health;
+		private $attacks;
+		private $weakness;
+		private $resistance;
+		/**
+		 * magic constructor method to prepare the new objects for use, often accepting arguments that the constructor uses to set required member variables.
+		 * @param  $name
+		 * @param  $energyType
+		 * @param  $hitPoints
+		 * @param  $attacks
+		 * @param  $weakness
+		 * @param  $resistance 
+		 */
+		public function __construct($name, $energyType, $hitPoints, $attacks, $weakness, $resistance) {
+        	$this->name = $name;
+        	$this->energyType = $energyType;
+        	$this->hitPoints = $hitPoints;
+        	$this->health = $hitPoints;
+        	$this->attacks = $attacks;
+        	$this->weakness = $weakness;
+        	$this->resistance = $resistance;
+			self::$populationPokemons++;
+    	}
+		/**
+		 * method to start an attack
+		 * @param $target
+		 * @param  $attackNumber
+		 * @return $this->attacks[$attackNumber]->name
+		 */
+		public function attack($target, $attackNumber) {
+			$target->receiveDamage($this->attacks[$attackNumber], $this->energyType);
+			return $this->attacks[$attackNumber]->name;
+		}
+		/**
+		 * method to calculate the amount of damage the attack method has done
+		 * @param $attack
+		 * @param $energyType 
+		 */
+		public function receiveDamage($attack, $energyType) {
+			if ($energyType == $this->weakness->energyType) {
+				$attack->damage *= $this->weakness->weaknessMultiplier;
+			}
+			else if ($energyType == $this->resistance->energyType) {
+				$attack->damage -= $this->resistance->resistanceValue;
+			}
+			$this->health -= $attack->damage;
+			if ($this->health <= 0) {
+				self::$populationPokemons--;
+			}
+		}
+		/**
+		 * method to check how many pokemons are alive
+		 * return int self::$populationPokemons
+		 */
+		public static function getPopulation() {
+			return self::$populationPokemons;
+		}
+		/**
+		 * method to get and return the name
+		 * return string $this->name
+		 */
+		public function getName() {
+			return $this->name;
+		}
+		/**
+		 * method to get and return the health
+		 * return int $this->health
+		 */
+		public function getHealth() {
+			return $this->health;
+		}
+		/**
+		 * method to get and return the hitPoints
+		 * return int $this->hitPoints
+		 */
+		public function getHitpoints() {
+			return $this->hitPoints;
+		}
+		/**
+		 * method to get and return the attack
+		 * return string $this->attacks[$attackNumber]->name
+		 */
+		public function getAttack($attackNumber) {
+			return $this->attacks[$attackNumber]->name;
+		}
+		/**
+		 * method to convert everything to a string
+		 * return string json_encode($this)
+		 */
+		public function __toString() {
+	        return json_encode($this);
+	    }
+	}

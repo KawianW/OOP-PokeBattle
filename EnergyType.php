@@ -1,11 +1,14 @@
-<?php
+<?php 
+	class EnergyType {
 
-class EnergyType
-{
-    public $name;
+		const FIRE = 'Fire';
+		const LIGHTNING = 'Lightning';
 
-    public function __construct($name)
-    {
-        $this->name = $name;
-    }
-}
+		public $name;
+		public $energyTypeValue;
+
+		public function __construct($name, $energyTypeValue) {
+			$this->name = $name;
+			$this->energyTypeValue = $energyTypeValue;
+		}
+	}
